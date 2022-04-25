@@ -8,8 +8,7 @@ Terraform module which creates Cloudwatch resources on AWS.
 
 ```hcl
 module "log_metric_filter" {
-  source  = "terraform-aws-modules/cloudwatch/aws//modules/log-metric-filter"
-  version = "~> 3.0"
+  source  = "github.com/opensource-terraform-modules/terraform-aws-cloudwatch//modules/log-metric-filter"
 
   log_group_name = "my-application-logs"
 
@@ -27,9 +26,7 @@ Read [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/la
 
 ```hcl
 module "log_group" {
-  source  = "terraform-aws-modules/cloudwatch/aws//modules/log-group"
-  version = "~> 3.0"
-
+  source  = "github.com/opensource-terraform-modules/terraform-aws-cloudwatch//modules/log-group"
   name              = "my-app"
   retention_in_days = 120
 }
@@ -39,8 +36,7 @@ module "log_group" {
 
 ```hcl
 module "log_stream" {
-  source  = "terraform-aws-modules/cloudwatch/aws//modules/log-stream"
-  version = "~> 3.0"
+  source  = "github.com/opensource-terraform-modules/terraform-aws-cloudwatch//modules/log-stream"
 
   name           = "stream1"
   log_group_name = "my-app"
@@ -51,8 +47,7 @@ module "log_stream" {
 
 ```hcl
 module "metric_alarm" {
-  source  = "terraform-aws-modules/cloudwatch/aws//modules/metric-alarm"
-  version = "~> 3.0"
+  source  = "github.com/opensource-terraform-modules/terraform-aws-cloudwatch//modules/metric-alarm"
 
   alarm_name          = "my-application-logs-errors"
   alarm_description   = "Bad errors in my-application-logs"
@@ -76,9 +71,7 @@ This submodule is useful when you need to create very similar alarms where only 
 
 ```hcl
 module "metric_alarms" {
-  source  = "terraform-aws-modules/cloudwatch/aws//modules/metric-alarms-by-multiple-dimensions"
-  version = "~> 3.0"
-
+  source  = "github.com/opensource-terraform-modules/terraform-aws-cloudwatch//modules/metric-alarms-by-multiple-dimensions"
   alarm_name          = "lambda-duration-"
   alarm_description   = "Lambda duration is too high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
@@ -110,9 +103,7 @@ Check out [list of all AWS services that publish CloudWatch metrics](https://doc
 
 ```hcl
 module "cis_alarms" {
-  source  = "terraform-aws-modules/cloudwatch/aws//modules/cis-alarms"
-  version = "~> 3.0"
-
+  source  = "github.com/opensource-terraform-modules/terraform-aws-cloudwatch//modules/cis-alarms"
   log_group_name = "my-cloudtrail-logs"
   alarm_actions  = ["arn:aws:sns:eu-west-1:835367859852:my-sns-queue"]
 }
